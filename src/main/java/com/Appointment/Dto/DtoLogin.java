@@ -1,0 +1,13 @@
+package com.Appointment.Dto;
+
+import lombok.Data;
+
+@Data
+public class DtoLogin {
+	
+	private String email;
+	private String password;
+	
+	
+
+}
