@@ -14,6 +14,8 @@ import com.Appointment.Entity.User;
 import com.Appointment.Security.JwtService;
 import com.Appointment.Services.IUserService;
 
+import io.swagger.v3.oas.annotations.Operation;
+
 @RestController
 @RequestMapping("/appointment")
 public class AuthController {
@@ -22,6 +24,7 @@ public class AuthController {
     @Autowired private JwtService jwtService;
     @Autowired private IUserService userService;
 
+    @Operation(summary = "login")
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(@RequestBody DtoLogin req) {
         Authentication authentication = authManager.authenticate(

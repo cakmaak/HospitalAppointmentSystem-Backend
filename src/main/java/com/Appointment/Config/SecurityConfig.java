@@ -79,7 +79,16 @@ public class SecurityConfig {
             .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
                 
-                .requestMatchers("/auth/**", "/appointment/user/saveuser","/appointment/login","/appointment/user/saveadmin").permitAll()
+                .requestMatchers("/auth/**",
+                		"/appointment/user/saveuser",
+                		"/appointment/login",
+                		"/appointment/user/saveadmin",
+                		 "/v3/api-docs/**",    
+                         "/swagger-ui/**",     
+                         "/swagger-ui.html"    
+                		
+                		
+                		).permitAll()
                 
                 .anyRequest().authenticated()
             )

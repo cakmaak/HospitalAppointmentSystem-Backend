@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.Appointment.Entity.Doctor;
 import com.Appointment.Services.IDoctorService;
 
+import io.swagger.v3.oas.annotations.Operation;
+
+
 @RestController
 @RequestMapping("/appointment/doctor")
 public class DoctorControllerimpl implements IDoctorController {
@@ -17,6 +20,7 @@ public class DoctorControllerimpl implements IDoctorController {
 	@Autowired
 	IDoctorService doctorService;
 	
+	@Operation(summary = "save doctor ")
 	@PostMapping("/savedoctor/{poliklinikid}")
 	@Override
 	public Doctor saveDoctor(@RequestBody Doctor doctor,@PathVariable Long poliklinikid) {

@@ -1,6 +1,7 @@
 package com.Appointment.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +13,8 @@ import com.Appointment.Dto.DtoUser;
 import com.Appointment.Entity.User;
 import com.Appointment.Services.IUserService;
 
+import io.swagger.v3.oas.annotations.Operation;
+
 @RestController
 @RequestMapping("/appointment/user")
 public class UserControllerimpl implements IUserController {
@@ -20,7 +23,8 @@ public class UserControllerimpl implements IUserController {
 	
 	@Autowired
 	PasswordEncoder passwordEncoder;
-
+	
+	@Operation(summary = "getme")
 	@GetMapping("/getuser")
 	@Override
 	public User getuser() {
@@ -33,7 +37,8 @@ public class UserControllerimpl implements IUserController {
 		
 		return null;
 	}
-
+	
+	@Operation(summary = "getuser")
 	@GetMapping("/GetUser")
 	@Override
 	public DtoUser Getuser() {
@@ -41,6 +46,7 @@ public class UserControllerimpl implements IUserController {
 		return userService.Getuser();
 	}
 	
+	@Operation(summary = "signup user")
 	@PostMapping("/saveuser")
 	@Override
 	public User saveUser(@RequestBody User user) {
@@ -48,6 +54,8 @@ public class UserControllerimpl implements IUserController {
 		return userService.saveUser(user);
 	}
 	
+	@Operation(summary = "signup for admin")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@PostMapping("/saveadmin")
 	@Override
 	public User saveuseradmin(@RequestBody User admin) {

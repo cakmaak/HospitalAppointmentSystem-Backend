@@ -2,6 +2,8 @@ package com.Appointment.Services;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import com.Appointment.Repository.AppointmentRepo;
@@ -167,6 +169,67 @@ public class AppointmentServiceimpl implements IAppointmentService {
 
 	    return dto;
 	}
+
+
+
+	@Override
+	public List<DtoAppointment> getallappointment() {
+		List<DtoAppointment> dtoAppointments=new ArrayList<>();
+		
+		List<Appointment> appointments=appointmentRepo.findAll();
+		
+		for (Appointment appointment : appointments) {
+			DtoAppointment dtoAppointment=new DtoAppointment();
+			dtoAppointment.setDoctorname(appointment.getDoctor().getName());
+			dtoAppointment.setDurum(appointment.getStatus());
+			dtoAppointment.setId(appointment.getId());
+			dtoAppointment.setPoliklinikname(appointment.getPoliklinik().getName());
+			dtoAppointment.setTarih(appointment.getTarih());
+			dtoAppointment.setUsername(appointment.getUser().getName());
+			dtoAppointments.add(dtoAppointment);
+			
+		}
+		
+		return dtoAppointments;
+	}
+
+
+
+	@Override
+	public List<DtoAppointment> getallappointmentforuser() {
+		
+		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		    if (auth == null || !auth.isAuthenticated() || "anonymousUser".equals(auth.getPrincipal())) {
+		        throw new RuntimeException("Lütfen giriş yapınız.");
+		    }
+
+		    String email = ((UserDetails) auth.getPrincipal()).getUsername();
+		    User user = userService.getUserbyEmail(email);
+
+		    List<DtoAppointment> dtoAppointments=new ArrayList<>();
+		    List<Appointment> appointments=appointmentRepo.findAll();
+		    for (Appointment appointment : appointments) {
+		    	if (user.getId().equals(appointment.getUser().getId())) {
+		    		DtoAppointment dtoAppointment=new DtoAppointment();
+		    		dtoAppointment.setDoctorname(appointment.getDoctor().getName());
+					dtoAppointment.setDurum(appointment.getStatus());
+					dtoAppointment.setId(appointment.getId());
+					dtoAppointment.setPoliklinikname(appointment.getPoliklinik().getName());
+					dtoAppointment.setTarih(appointment.getTarih());
+					dtoAppointment.setUsername(appointment.getUser().getName());
+					dtoAppointments.add(dtoAppointment);
+		    		
+					
+				}
+				
+			}
+
+		return dtoAppointments;
+	}
+
+
+
+
 
 
 
