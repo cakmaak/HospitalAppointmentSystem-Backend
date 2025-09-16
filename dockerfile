@@ -1,6 +1,11 @@
+# 1. Build aşaması
+FROM maven:3.9.4-eclipse-temurin-17 AS builder
+WORKDIR /app
+COPY . .
+RUN mvn clean package -DskipTests
+
+# 2. Run aşaması
 FROM openjdk:17-jdk-alpine
-VOLUME /tmp
-ARG JAR_FILE=target/Appointment-0.0.1-SNAPSHOT.jar
-COPY ${JAR_FILE} app.jar
-COPY src/main/resources/application.properties application.properties
-ENTRYPOINT ["java","-jar","/app.jar"]
+WORKDIR /app
+COPY --from=builder /app/target/Appointment-0.0.1-SNAPSHOT.jar app.jar
+ENTRYPOINT ["java","-jar","/app/app.jar"]
