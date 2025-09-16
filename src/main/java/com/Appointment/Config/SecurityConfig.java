@@ -60,7 +60,8 @@ public class SecurityConfig {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:5173","https://workspace-cakmaak.replit.app"));
+        configuration.setAllowedOrigins(List.of("http://localhost:5173","https://workspace-cakmaak.replit.app"
+        		, "https://hospitalappointmentsystem-backend.sliplane.app"));
         configuration.setAllowedMethods(List.of("GET","POST","PUT","DELETE","OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowCredentials(true);
