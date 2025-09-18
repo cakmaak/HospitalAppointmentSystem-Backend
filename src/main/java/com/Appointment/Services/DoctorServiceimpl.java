@@ -43,7 +43,7 @@ public class DoctorServiceimpl implements IDoctorService {
 			dtoDoctor.setAppointments(doctor.getAppointments());
 			dtoDoctor.setId(doctor.getId());
 			dtoDoctor.setName(doctor.getName());
-			dtoDoctor.setPoliklinik(dtoDoctor.getPoliklinik());
+			dtoDoctor.setPoliklinik(doctor.getPoliklinik());
 			dtoDoctors.add(dtoDoctor);
 			
 		}
