@@ -1,11 +1,13 @@
 package com.Appointment.Services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.Appointment.Dto.DtoDoctor;
 import com.Appointment.Entity.Doctor;
 import com.Appointment.Repository.DoctorRepo;
 
@@ -33,9 +35,19 @@ public class DoctorServiceimpl implements IDoctorService {
 	}
 	
 	@Override
-	public List<Doctor> getalldoctors() {
+	public List<DtoDoctor> getalldoctors() {
 	List<Doctor> doctors=doctorRepo.findAll();
-		return doctors;
+		List<DtoDoctor> dtoDoctors= new ArrayList<>();
+		for (Doctor doctor : doctors) {
+			DtoDoctor dtoDoctor=new DtoDoctor();
+			dtoDoctor.setAppointments(doctor.getAppointments());
+			dtoDoctor.setId(doctor.getId());
+			dtoDoctor.setName(doctor.getName());
+			dtoDoctor.setPoliklinik(dtoDoctor.getPoliklinik());
+			dtoDoctors.add(dtoDoctor);
+			
+		}
+		return dtoDoctors;
 		
 	}
 

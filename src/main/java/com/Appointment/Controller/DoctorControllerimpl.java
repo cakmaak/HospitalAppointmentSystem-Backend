@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.Appointment.Dto.DtoDoctor;
 import com.Appointment.Entity.Doctor;
 import com.Appointment.Services.IDoctorService;
 
@@ -33,7 +34,7 @@ public class DoctorControllerimpl implements IDoctorController {
 	@Operation(summary = "get all doctors")
 	@GetMapping("/getalldoctors")
 	@Override
-	public List<Doctor> getalldoctors() {
+	public List<DtoDoctor> getalldoctors() {
 		
 		return doctorService.getalldoctors();
 	}
