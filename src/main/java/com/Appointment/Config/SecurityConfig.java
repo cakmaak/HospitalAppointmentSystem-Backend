@@ -86,8 +86,9 @@ public class SecurityConfig {
                 		"/appointment/user/saveadmin",
                 		 "/v3/api-docs/**",    
                          "/swagger-ui/**",     
-                         "/swagger-ui.html"    
-                		
+                         "/swagger-ui.html"    ,
+                         "/appointment/poliklinik/getallklinik",
+                         "/appointment/doctor/getalldoctors"
                 		
                 		).permitAll()
                 

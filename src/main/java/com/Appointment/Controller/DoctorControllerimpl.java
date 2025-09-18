@@ -1,6 +1,9 @@
 package com.Appointment.Controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,6 +28,14 @@ public class DoctorControllerimpl implements IDoctorController {
 	@Override
 	public Doctor saveDoctor(@RequestBody Doctor doctor,@PathVariable Long poliklinikid) {
 		return doctorService.saveDoctor(doctor,poliklinikid);
+	}
+	
+	@Operation(summary = "get all doctors")
+	@GetMapping("/getalldoctors")
+	@Override
+	public List<Doctor> getalldoctors() {
+		
+		return doctorService.getalldoctors();
 	}
 
 }
