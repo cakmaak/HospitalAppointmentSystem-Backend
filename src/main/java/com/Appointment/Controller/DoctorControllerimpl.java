@@ -44,7 +44,7 @@ public class DoctorControllerimpl implements IDoctorController {
 	
 	@PreAuthorize("hasAuthority('ADMIN')")
 	@Operation(summary = "delete doctor for admins")
-	@DeleteMapping("/deletedoctor")
+	@DeleteMapping("/deletedoctor/{id}")
 	@Override
 	public DtoDoctor deleteDoctor(@PathVariable Long id) {
 		return doctorService.deleteDoctor(id);

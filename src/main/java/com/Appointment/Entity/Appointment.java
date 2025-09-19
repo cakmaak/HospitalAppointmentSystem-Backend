@@ -45,12 +45,12 @@ public class Appointment {
     
     @JsonBackReference("poliklinik-appointment")
     @ManyToOne
-    @JoinColumn(name = "poliklinik_id", nullable = false)
+    @JoinColumn(name = "poliklinik_id", nullable = true)
     private Poliklinik poliklinik;
 
     @ManyToOne
     @JsonBackReference("doctor-appointment")
-    @JoinColumn(name = "doctor_id", nullable = false)
+    @JoinColumn(name = "doctor_id", nullable = true)
     private Doctor doctor;
 }
 
