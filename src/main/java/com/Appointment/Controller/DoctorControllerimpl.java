@@ -46,7 +46,7 @@ public class DoctorControllerimpl implements IDoctorController {
 	@Operation(summary = "delete doctor for admins")
 	@DeleteMapping("/deletedoctor")
 	@Override
-	public Doctor deleteDoctor(@PathVariable Long id) {
+	public DtoDoctor deleteDoctor(@PathVariable Long id) {
 		return doctorService.deleteDoctor(id);
 	}
 

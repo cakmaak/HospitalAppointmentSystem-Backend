@@ -10,6 +10,6 @@ public interface IDoctorService {
 	public Doctor saveDoctor(Doctor doctor,Long poliklinikid);
 	public Doctor findDoctor(Long id);
 	public List<DtoDoctor> getalldoctors();
-	public Doctor deleteDoctor(Long id);
+	public DtoDoctor deleteDoctor(Long id);
 
 }

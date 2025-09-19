@@ -9,5 +9,5 @@ public interface IDoctorController {
 	
 	public Doctor saveDoctor(Doctor doctor,Long poliklinikid);
 	public List<DtoDoctor> getalldoctors();
-	public Doctor deleteDoctor(Long id);
+	public DtoDoctor deleteDoctor(Long id);
 }

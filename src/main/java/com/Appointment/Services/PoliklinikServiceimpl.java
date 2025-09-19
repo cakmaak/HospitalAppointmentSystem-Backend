@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.stereotype.Service;
 
+import com.Appointment.Dto.DtoPoliklinik;
 import com.Appointment.Entity.Poliklinik;
 import com.Appointment.Repository.PoliklinikRepo;
 
@@ -38,11 +39,18 @@ public class PoliklinikServiceimpl implements IPoliklinikService {
 	}
 
 	@Override
-	public Poliklinik deletePoliklinik(Long id) {
+	public DtoPoliklinik deletePoliklinik(Long id) {
 		Optional<Poliklinik> optional=poliklinikRepo.findById(id);
 		Poliklinik poliklinik=optional.get();
+		DtoPoliklinik dtoPoliklinik=new DtoPoliklinik();
+		dtoPoliklinik.setAppointments(poliklinik.getAppointments());
+		dtoPoliklinik.setDoctors(poliklinik.getDoctors());
+		dtoPoliklinik.setId(poliklinik.getId());
+		dtoPoliklinik.setName(poliklinik.getName());
+		
 		poliklinikRepo.delete(poliklinik);
-		return poliklinik;
+		
+		return dtoPoliklinik;
 	}
 
 }

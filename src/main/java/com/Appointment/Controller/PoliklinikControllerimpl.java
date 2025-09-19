@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.Appointment.Dto.DtoPoliklinik;
 import com.Appointment.Entity.Poliklinik;
 import com.Appointment.Services.IPoliklinikService;
 
@@ -52,7 +53,7 @@ public class PoliklinikControllerimpl implements IPoliklinikController {
 	@Operation(summary = "delete poliklinik for admins")
 	@PreAuthorize("hasAuthority('ADMIN')")
 	@Override
-	public Poliklinik deletePoliklinik(@PathVariable  Long id) {
+	public DtoPoliklinik deletePoliklinik(@PathVariable  Long id) {
 		
 		return poliklinikService.deletePoliklinik(id);
 	}
