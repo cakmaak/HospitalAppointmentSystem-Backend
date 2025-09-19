@@ -29,7 +29,7 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "tarih",nullable = false)
+    @Column(name = "tarih",nullable = true)
     private LocalDateTime tarih;
     
     @Column(name = "durum")
@@ -39,7 +39,7 @@ public class Appointment {
     
     @JsonBackReference("user-appointment")
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = true)
     private User user;
     
     

@@ -23,7 +23,7 @@ public class Poliklinik {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name",nullable = false)
+    @Column(name = "name",nullable = true)
     private String name;
     
     @JsonManagedReference("poliklinik-doctor")
