@@ -31,7 +31,7 @@ public class Doctor {
 
     @ManyToOne
     @JsonBackReference("poliklinik-doctor")
-    @JoinColumn(name = "poliklinik_id", nullable = false)
+    @JoinColumn(name = "poliklinik_id", nullable = true)
     private Poliklinik poliklinik;
 
     @JsonBackReference

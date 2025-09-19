@@ -37,4 +37,12 @@ public class PoliklinikServiceimpl implements IPoliklinikService {
 		return polikliniks;
 	}
 
+	@Override
+	public Poliklinik deletePoliklinik(Long id) {
+		Optional<Poliklinik> optional=poliklinikRepo.findById(id);
+		Poliklinik poliklinik=optional.get();
+		poliklinikRepo.delete(poliklinik);
+		return poliklinik;
+	}
+
 }

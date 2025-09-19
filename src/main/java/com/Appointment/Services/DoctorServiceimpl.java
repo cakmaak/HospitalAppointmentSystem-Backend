@@ -51,4 +51,12 @@ public class DoctorServiceimpl implements IDoctorService {
 		
 	}
 
+	@Override
+	public Doctor deleteDoctor(Long id) {
+		Optional<Doctor> optional=doctorRepo.findById(id);
+		Doctor doctor=optional.get();
+		doctorRepo.delete(doctor);
+		return doctor;
+	}
+
 }

@@ -3,6 +3,8 @@ package com.Appointment.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,6 +39,15 @@ public class DoctorControllerimpl implements IDoctorController {
 	public List<DtoDoctor> getalldoctors() {
 		
 		return doctorService.getalldoctors();
+	}
+	
+	
+	@PreAuthorize("hasAuthority('ADMIN')")
+	@Operation(summary = "delete doctor for admins")
+	@DeleteMapping("/deletedoctor")
+	@Override
+	public Doctor deleteDoctor(@PathVariable Long id) {
+		return doctorService.deleteDoctor(id);
 	}
 
 }
